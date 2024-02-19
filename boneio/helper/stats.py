@@ -192,7 +192,7 @@ class HostData:
         if ina219 is not None:
             host_stats[INA219] = {
                 "f": lambda: {
-                    *{sensor.device_class: sensor.state for sensor in ina219.sensors}
+                    **{ina219.get_sensor(sensor).device_class: ina219.get_sensor(sensor).state for sensor in ina219.sensors}
                 },
                 "update_interval": TimePeriod(seconds=60)
             }

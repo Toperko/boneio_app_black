@@ -95,6 +95,10 @@ class INA219(AsyncUpdater, Filter):
     def sensors(self) -> dict:
         return self._sensors
 
+    def get_sensor(self, sensor_name) -> INA219Sensor:
+        return self._sensors[sensor_name]
+
+
     async def async_update(self, time: datetime) -> None:
         """Fetch temperature periodically and send to MQTT."""
         for k in self._states.keys():
